@@ -1,5 +1,4 @@
 
-
 ### Códigos de prueba para tabla Artist
 mutation addArtist {
   createArtist(input: {
@@ -41,6 +40,7 @@ query Artists {
   }
 }
 
+### Códigos de prueba para tabla Album
 query Albums{
   listAlbums(sortDirection: ASC){
     items{
@@ -56,8 +56,6 @@ query Albums{
     }
   }
 }
-
-
 
 mutation addAlbum{
   createAlbum(input:{
