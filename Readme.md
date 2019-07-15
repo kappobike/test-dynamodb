@@ -11,7 +11,7 @@ mutation addArtist {
 
 mutation updateArtist{
   updateArtist(input:{
-    id: "da853929-464b-4b76-814c-41fb6883e228"
+    id: "id-artista"
     country: "UK"
   })
   {
@@ -42,7 +42,7 @@ query Artists {
 
 ### Códigos de prueba para tabla Album
 query Albums{
-  listAlbums(sortDirection: ASC){
+  listAlbums{
     items{
       createdAt
       id
@@ -60,7 +60,7 @@ query Albums{
 mutation addAlbum{
   createAlbum(input:{
     album_name: "Album of the artist"
-    albumArtistId: "id de artista ingresado"
+    albumArtistId: "id-artista"
     year: 2019
     duration: "01:21:20"
   })
@@ -71,7 +71,7 @@ mutation addAlbum{
 
 mutation updateAlbum{
   updateAlbum(input:{
-    id:  "11dd3c7f-f378-4c02-b251-c944126fbbca"
+    id:  "id-album"
     duration: "00:42:59"
   })
   {
@@ -84,6 +84,8 @@ mutation updateAlbum{
       }
   }
 }
+
+### Códigos de prueba para realizar consultas
 
 query findArtistByName{
   listArtists
@@ -104,7 +106,7 @@ query findAlbums{
   listAlbums
   (filter:{
     albumArtistId: {
-      eq: "7a67a807-5a58-46c3-950e-7257cfa60c96"
+      eq: "id-artista"
     }
   }
   )
@@ -117,9 +119,11 @@ query findAlbums{
   }
 }
 
+### Códigos de prueba para eliminar datos
+
 mutation delAlbum{
   deleteAlbum(input:{
-    id: "bbf185d7-1d6f-46c5-8591-e00e1e8503e7"
+    id: "id-album"
   })
  	{
     album_name
@@ -128,7 +132,7 @@ mutation delAlbum{
 
 mutation delArtist{
   deleteArtist(input:{
-    id: "a60525f6-2158-40b8-a183-e77c90fd2771"
+    id: "id-artista"
   })
  	{
     artist_name
