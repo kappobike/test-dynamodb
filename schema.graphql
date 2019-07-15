@@ -1,0 +1,178 @@
+type Artist {
+  id: ID!
+  artist_name: String!
+  albums(filter: ModelAlbumFilterInput, limit: Int, nextToken: String): ModelAlbumConnection
+  country: String
+  createdAt: String
+  updatedAt: String
+}
+
+type ModelArtistConnection {
+  items: [Artist]
+  nextToken: String
+}
+
+input CreateArtistInput {
+  id: ID
+  artist_name: String!
+  country: String
+}
+
+input UpdateArtistInput {
+  id: ID!
+  artist_name: String
+  country: String
+}
+
+input DeleteArtistInput {
+  id: ID
+}
+
+input ModelArtistFilterInput {
+  id: ModelIDFilterInput
+  artist_name: ModelStringFilterInput
+  country: ModelStringFilterInput
+  and: [ModelArtistFilterInput]
+  or: [ModelArtistFilterInput]
+  not: ModelArtistFilterInput
+}
+
+type Album {
+  id: ID!
+  album_name: String!
+  artist: Artist
+  year: Int
+  duration: String  
+  createdAt: String
+  updatedAt: String
+}
+
+type ModelAlbumConnection {
+  items: [Album]
+  nextToken: String
+}
+
+input CreateAlbumInput {
+  id: ID
+  album_name: String!
+  year: Int
+  duration: String
+  albumArtistId: ID!
+}
+
+input UpdateAlbumInput {
+  id: ID!
+  album_name: String
+  year: Int
+  duration: String
+  albumArtistId: ID
+}
+
+input DeleteAlbumInput {
+  id: ID
+}
+
+input ModelAlbumFilterInput {
+  id: ModelIDFilterInput
+  album_name: ModelStringFilterInput
+  year: ModelIntFilterInput
+  duration: ModelStringFilterInput
+  albumArtistId: ModelIDFilterInput
+  and: [ModelAlbumFilterInput]
+  or: [ModelAlbumFilterInput]
+  not: ModelAlbumFilterInput
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+input ModelStringFilterInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+input ModelIDFilterInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+input ModelIntFilterInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  contains: Int
+  notContains: Int
+  between: [Int]
+}
+
+input ModelFloatFilterInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  contains: Float
+  notContains: Float
+  between: [Float]
+}
+
+input ModelBooleanFilterInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelIntKeyConditionInput {
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+type Query {
+  getArtist(id: ID!): Artist
+  listArtists(filter: ModelArtistFilterInput, limit: Int, nextToken: String): ModelArtistConnection
+  getAlbum(id: ID!): Album
+  listAlbums(filter: ModelAlbumFilterInput, limit: Int, nextToken: String): ModelAlbumConnection
+}
+
+type Mutation {
+  createArtist(input: CreateArtistInput!): Artist
+  updateArtist(input: UpdateArtistInput!): Artist
+  deleteArtist(input: DeleteArtistInput!): Artist
+  createAlbum(input: CreateAlbumInput!): Album
+  updateAlbum(input: UpdateAlbumInput!): Album
+  deleteAlbum(input: DeleteAlbumInput!): Album
+}
+
+type Subscription {
+  onCreateArtist: Artist @aws_subscribe(mutations: ["createArtist"])
+  onUpdateArtist: Artist @aws_subscribe(mutations: ["updateArtist"])
+  onDeleteArtist: Artist @aws_subscribe(mutations: ["deleteArtist"])
+  onCreateAlbum: Album @aws_subscribe(mutations: ["createAlbum"])
+  onUpdateAlbum: Album @aws_subscribe(mutations: ["updateAlbum"])
+  onDeleteAlbum: Album @aws_subscribe(mutations: ["deleteAlbum"])
+}
