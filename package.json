@@ -9,7 +9,7 @@
   "author": "Carlos Fuentes Novoa",
   "license": "ISC",
   "devDependencies": {
-    "aws-sdk": "^2.489.0",
+    "aws-sdk": "^2.814.0",
     "serverless-appsync-plugin": "^1.1.2"
   },
   "dependencies": {
